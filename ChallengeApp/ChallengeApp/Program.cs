@@ -1,25 +1,41 @@
-﻿int number = 4594;
-string numberIsString = number.ToString();
-char[] letters = numberIsString.ToCharArray();
-int[] counter = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+﻿using ChallengeApp;
 
-foreach (char c in letters)
+Employee employee1 = new Employee("Jan", "Nowak", 21);
+Employee employee2 = new Employee("Marian", "Kowalski", 33);
+Employee employee3 = new Employee("Maciej", "Lipiec", 45);
+
+employee1.AddScore(1);
+employee1.AddScore(2);
+employee1.AddScore(3);
+employee1.AddScore(4);
+employee1.AddScore(5);
+
+employee2.AddScore(4);
+employee2.AddScore(2);
+employee2.AddScore(1);
+employee2.AddScore(8);
+employee2.AddScore(10);
+
+employee3.AddScore(2);
+employee3.AddScore(5);
+employee3.AddScore(7);
+employee3.AddScore(1);
+employee3.AddScore(4);
+
+List<Employee> employees = new List<Employee>()
+{ employee1, employee2, employee3 };
+
+int maxResult = -1;
+Employee employeeWithMaxResult = null;
+
+foreach (var i in employees)
 {
-    if (c == '0') { ++counter[0]; }
-    else if (c == '1') { ++counter[1]; }
-    else if (c == '2') { ++counter[2]; }
-    else if (c == '3') { ++counter[3]; }
-    else if (c == '4') { ++counter[4]; }
-    else if (c == '5') { ++counter[5]; }
-    else if (c == '6') { ++counter[6]; }
-    else if (c == '7') { ++counter[7]; }
-    else if (c == '8') { ++counter[8]; }
-    else if (c == '9') { ++counter[9]; }
+    if (i.Result > maxResult)
+    {
+        employeeWithMaxResult = i;
+        maxResult = i.Result;
+    }
 }
 
-Console.WriteLine("Wyniki dla liczby:" + number);
+Console.WriteLine("Pracownik z najwyższą punktacją: " + employeeWithMaxResult.Name + " " + employeeWithMaxResult.Surname + ", wiek: " + employeeWithMaxResult.Age + ", punkty: " + employeeWithMaxResult.Result);
 
-for (int i = 0; i < counter.Length; i++)
-{
-    Console.WriteLine(i + " => " + counter[i]);
-}
