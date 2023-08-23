@@ -66,8 +66,8 @@
         public void TestReferenceType()
         {
             //arrange
-            var employee1 = new Employee("Dariusz", "Mazurek", 44);
-            var employee2 = new Employee("Dariusz", "Mazurek", 44);
+            var employee1 = new Employee("Dariusz", "Mazurek");
+            var employee2 = new Employee("Dariusz", "Mazurek");
 
             //assert
             Assert.AreNotEqual(employee1, employee2);
