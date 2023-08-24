@@ -2,10 +2,10 @@
 {
     public class Employee
     {
+        private List<float> grades = new List<float>();
         public string Name { get; private set; }
         public string Surname { get; private set; }
 
-        private List<float> grades = new List<float>();
 
         public Employee(string name, string surname)
         {
@@ -15,8 +15,57 @@
 
         public void AddGrade(float grade)
         {
-            this.grades.Add(grade);
+            if (grade >= 0 && grade <= 100)
+            {
+                this.grades.Add(grade);
+            }
+            else
+            {
+                Console.WriteLine("Value is out of range 0-100.");
+            }
+
         }
+
+        public void AddGrade(string grade)
+        {
+            if (float.TryParse(grade, out float result))
+            {
+                this.AddGrade(result);
+            }
+            else
+            {
+                Console.WriteLine("Invalid string value.");
+            }
+
+        }
+
+        public void AddGrade(char grade)
+        {
+            var gradeParsed = grade.ToString();
+            if (float.TryParse(gradeParsed, out float result))
+            {
+                this.AddGrade(result);
+            }
+            else
+            {
+                Console.WriteLine("Invalid char value.");
+            }
+
+        }
+
+        public void AddGrade(int grade)
+        {
+            float result = (float)grade;
+            this.AddGrade(result);
+        }
+
+
+        public void AddGrade(double grade)
+        {
+            float result = (float)grade;
+            this.AddGrade(result);
+        }
+
 
         public Statistics GetStatistics()
         {
