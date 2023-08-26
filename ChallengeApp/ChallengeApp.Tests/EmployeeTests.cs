@@ -4,13 +4,13 @@ namespace ChallengeApp.Tests
     {
 
         [Test]
-        public void MinGrade()
+        public void ReturnCorrectMinGrade()
         {
             //arrange
-            var employee = new Employee("Marcin", "Kowal");
+            var employee = new Employee();
             employee.AddGrade(1);
-            employee.AddGrade(2);
-            employee.AddGrade(3);
+            employee.AddGrade('2');
+            employee.AddGrade(3.0);
 
             //act
             var result = employee.GetStatistics();
@@ -21,27 +21,27 @@ namespace ChallengeApp.Tests
         }
 
         [Test]
-        public void MaxGrade()
+        public void ReturnCorrectMaxGrade()
         {
             //arrange
-            var employee = new Employee("Dariusz", "Mazurek");
-            employee.AddGrade(2);
-            employee.AddGrade(4);
-            employee.AddGrade(9);
+            var employee = new Employee();
+            employee.AddGrade(2.0);
+            employee.AddGrade("4");
+            employee.AddGrade('A');
 
             //act
             var result = employee.GetStatistics();
 
             //assert
-            Assert.AreEqual(9f, result.Max);
+            Assert.AreEqual(100f, result.Max);
 
         }
 
         [Test]
-        public void AverageGrade()
+        public void ReturnCorrectAverageGrade()
         {
             //arrange
-            var employee = new Employee("Kamil", "Kozak");
+            var employee = new Employee();
             employee.AddGrade(2);
             employee.AddGrade(2);
             employee.AddGrade(6);
@@ -50,9 +50,28 @@ namespace ChallengeApp.Tests
             var result = employee.GetStatistics();
 
             //assert
-            Assert.AreEqual(Math.Round(3.33,2), Math.Round(result.Average,2));
+            Assert.AreEqual(Math.Round(3.33, 2), Math.Round(result.Average, 2));
 
         }
+
+        [Test]
+        public void ReturnCorrectAverageLetter()
+        {
+            //arrange
+            var employee = new Employee();
+            employee.AddGrade(99);
+            employee.AddGrade(89);
+            employee.AddGrade(100);
+
+            //act
+            var result = employee.GetStatistics();
+
+            //assert
+            Assert.AreEqual('A', result.AverageLetter);
+
+        }
+
+
 
     }
 }
