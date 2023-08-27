@@ -70,8 +70,5 @@ namespace ChallengeApp.Tests
             Assert.AreEqual('A', result.AverageLetter);
 
         }
-
-
-
     }
 }

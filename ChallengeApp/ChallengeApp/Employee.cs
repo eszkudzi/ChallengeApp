@@ -21,7 +21,7 @@
             }
             else
             {
-                Console.WriteLine("Value is out of range 0-100.");
+                throw new Exception ("Value is out of range 0-100.");
             }
         }
         public void AddGrade(string grade)
@@ -32,9 +32,22 @@
             }
             else
             {
-                Console.WriteLine("Invalid string value.");
+                throw new Exception ("Invalid string value.");
             }
         }
+
+        public void AddGrade(int grade)
+        {
+            float result = (float)grade;
+            this.AddGrade(result);
+        }
+
+        public void AddGrade(double grade)
+        {
+            float result = (float)grade;
+            this.AddGrade(result);
+        }
+
         public void AddGrade(char grade)
         {
             switch (grade)
@@ -60,21 +73,8 @@
                     this.grades.Add(20);
                     break;
                 default:
-                    Console.WriteLine("Incorrect grade");
-                    break;
+                    throw new Exception ("Incorrect grade.");
             }
-        }
-
-        public void AddGrade(int grade)
-        {
-            float result = (float)grade;
-            this.AddGrade(result);
-        }
-
-        public void AddGrade(double grade)
-        {
-            float result = (float)grade;
-            this.AddGrade(result);
         }
 
         public Statistics GetStatistics()
