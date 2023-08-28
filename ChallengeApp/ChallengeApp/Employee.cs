@@ -1,17 +1,20 @@
 ﻿namespace ChallengeApp
 {
-    public class Employee
+    public class Employee : Person
     {
         private List<float> grades = new List<float>();
-        public string Name { get; private set; }
-        public string Surname { get; private set; }
 
-        public Employee() { }
-
-        public Employee(string name, string surname)
+        public Employee()
+            : this("no name", "no surname", '?')
         {
-            this.Name = name;
-            this.Surname = surname;
+        }
+        public Employee(string name, string surname)
+            : base(name, surname)
+        {
+        }
+        public Employee(string name, string surname, char sex)
+            : base(name, surname, sex)
+        {
         }
         public void AddGrade(float grade)
         {
@@ -21,7 +24,7 @@
             }
             else
             {
-                throw new Exception ("Value is out of range 0-100.");
+                throw new Exception("Value is out of range 0-100.");
             }
         }
         public void AddGrade(string grade)
@@ -32,10 +35,9 @@
             }
             else
             {
-                throw new Exception ("Invalid string value.");
+                throw new Exception("Invalid string value.");
             }
         }
-
         public void AddGrade(int grade)
         {
             float result = (float)grade;
@@ -73,7 +75,7 @@
                     this.grades.Add(20);
                     break;
                 default:
-                    throw new Exception ("Incorrect grade.");
+                    throw new Exception("Incorrect grade.");
             }
         }
 

@@ -9,7 +9,7 @@ namespace ChallengeApp.Tests
             //arrange
             var employee = new Employee();
             employee.AddGrade(1);
-            employee.AddGrade('2');
+            employee.AddGrade("21");
             employee.AddGrade(3.0);
 
             //act
