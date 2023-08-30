@@ -86,7 +86,7 @@
                     this.grades.Add(0);
                     break;
                 default:
-                    throw new Exception("Incorrect grade, inalid string value.");
+                    throw new Exception("Incorrect grade, invalid string value.");
             }
         }
         public void AddGrade(int grade)

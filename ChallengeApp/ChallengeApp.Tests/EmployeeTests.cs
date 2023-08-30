@@ -7,7 +7,7 @@ namespace ChallengeApp.Tests
         public void ReturnCorrectMinGrade()
         {
             //arrange
-            var employee = new Employee();
+            var employee = new EmployeeInMemory("Ewa", "Gileta");
             employee.AddGrade(1);
             employee.AddGrade("21");
             employee.AddGrade(3.0);
@@ -24,7 +24,7 @@ namespace ChallengeApp.Tests
         public void ReturnCorrectMaxGrade()
         {
             //arrange
-            var employee = new Employee();
+            var employee = new EmployeeInMemory("Ewa", "Gileta");
             employee.AddGrade(2.0);
             employee.AddGrade("4");
             employee.AddGrade('A');
@@ -41,7 +41,7 @@ namespace ChallengeApp.Tests
         public void ReturnCorrectAverageGrade()
         {
             //arrange
-            var employee = new Employee();
+            var employee = new EmployeeInMemory("Ewa", "Gileta");
             employee.AddGrade(2);
             employee.AddGrade(2);
             employee.AddGrade(6);
@@ -58,7 +58,7 @@ namespace ChallengeApp.Tests
         public void ReturnCorrectAverageLetter()
         {
             //arrange
-            var employee = new Employee();
+            var employee = new EmployeeInMemory("Ewa", "Gileta");
             employee.AddGrade(99);
             employee.AddGrade(89);
             employee.AddGrade(100);

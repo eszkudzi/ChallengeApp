@@ -1,21 +1,14 @@
 ﻿namespace ChallengeApp
 {
-    public class Employee : IEmployee
+    public class EmployeeInMemory : EmployeeBase
     {
         private List<float> grades = new List<float>();
-
-        public Employee() { }
-
-        public Employee(string name, string surname)
+        public EmployeeInMemory(string name, string surname) 
+            : base(name, surname)
         {
-            this.Name = name;
-            this.Surname = surname;
         }
 
-        public string Name { get; private set; }
-        public string Surname { get; private set; }
-
-        public void AddGrade(float grade)
+        public override void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
             {
@@ -26,7 +19,7 @@
                 throw new Exception("Value is out of range 0-100.");
             }
         }
-        public void AddGrade(string grade)
+        public override void AddGrade(string grade)
         {
             if (float.TryParse(grade, out float result))
             {
@@ -37,19 +30,19 @@
                 throw new Exception("Invalid string value.");
             }
         }
-        public void AddGrade(int grade)
+        public override void AddGrade(int grade)
         {
             float result = (float)grade;
             this.AddGrade(result);
         }
 
-        public void AddGrade(double grade)
+        public override void AddGrade(double grade)
         {
             float result = (float)grade;
             this.AddGrade(result);
         }
 
-        public void AddGrade(char grade)
+        public override void AddGrade(char grade)
         {
             switch (grade)
             {
@@ -78,7 +71,7 @@
             }
         }
 
-        public Statistics GetStatistics()
+        public override Statistics GetStatistics()
         {
             var stats = new Statistics();
             stats.Average = 0;
@@ -113,7 +106,5 @@
             }
             return stats;
         }
-
     }
-
 }
