@@ -4,7 +4,13 @@ Console.WriteLine("Witamy w programie do oceny Pracowników");
 Console.WriteLine("---------------------------------------");
 Console.WriteLine();
 
-var employee = new EmployeeInFile("Ewa", "Gileta");
+var employee = new EmployeeInMemory("Ewa", "Gileta");
+
+employee.GradeAdded += EmployeeGradeAdded;
+void EmployeeGradeAdded(object sender, EventArgs args)
+{
+    Console.WriteLine("Dodano nową ocenę.");
+}
 
 while (true)
 {
@@ -17,6 +23,7 @@ while (true)
     try
     {
         employee.AddGrade(input);
+
     }
     catch (Exception e)
     {
