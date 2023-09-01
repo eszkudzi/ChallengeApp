@@ -1,16 +1,10 @@
-﻿using System.Diagnostics;
-
-namespace ChallengeApp
+﻿namespace ChallengeApp
 {
     public class EmployeeInFile : EmployeeBase
     {
         public override event GradeAddedDelegate GradeAdded;
-
         private const string fileName = "grades.txt";
-        public EmployeeInFile(string name, string surname)
-            : base(name, surname)
-        {
-        }
+        public EmployeeInFile(string name, string surname) : base(name, surname) { }
 
         public override void AddGrade(float grade)
         {
@@ -31,7 +25,6 @@ namespace ChallengeApp
                 throw new Exception("Value is out of range 0-100.");
             }
         }
-
         public override void AddGrade(string grade)
         {
             if (float.TryParse(grade, out float result))
@@ -43,19 +36,16 @@ namespace ChallengeApp
                 throw new Exception("Invalid string value.");
             }
         }
-
         public override void AddGrade(int grade)
         {
             float result = (float)grade;
             this.AddGrade(result);
         }
-
         public override void AddGrade(double grade)
         {
             float result = (float)grade;
             this.AddGrade(result);
         }
-
         public override void AddGrade(char grade)
         {
             switch (grade)
@@ -84,14 +74,16 @@ namespace ChallengeApp
                     throw new Exception("Incorrect grade.");
             }
         }
-
         public override Statistics GetStatistics()
         {
             var gradesFromFile = this.ReadGradesFromFile();
-            var stats = this.CountStats(gradesFromFile);
+            var stats = new Statistics();
+            foreach (var grade in gradesFromFile)
+            {
+                stats.AddGrade(grade);
+            }
             return stats;
         }
-
         private List<float> ReadGradesFromFile()
         {
             var grades = new List<float>();
@@ -110,42 +102,5 @@ namespace ChallengeApp
             }
             return grades;
         }
-
-        private Statistics CountStats(List<float> grades)
-        {
-            var stats = new Statistics();
-            stats.Average = 0;
-            stats.Max = float.MinValue;
-            stats.Min = float.MaxValue;
-
-            foreach (var grade in grades)
-            {
-                stats.Max = Math.Max(stats.Max, grade);
-                stats.Min = Math.Min(stats.Min, grade);
-                stats.Average += grade;
-            }
-            stats.Average /= grades.Count;
-
-            switch (stats.Average)
-            {
-                case var average when average >= 80:
-                    stats.AverageLetter = 'A';
-                    break;
-                case var average when average >= 60:
-                    stats.AverageLetter = 'B';
-                    break;
-                case var average when average >= 40:
-                    stats.AverageLetter = 'C';
-                    break;
-                case var average when average >= 20:
-                    stats.AverageLetter = 'D';
-                    break;
-                default:
-                    stats.AverageLetter = 'E';
-                    break;
-            }
-            return stats;
-        }
-
     }
 }
